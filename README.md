@@ -1,6 +1,6 @@
 # hello from dubai :)
 
-still no oyvey gold edition leak :(
+still no skeet.cc edition leak :(
 
 credits: everyone
 
