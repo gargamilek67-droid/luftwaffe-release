@@ -6,7 +6,6 @@ import opm.whatsapp.WhatsApp;
 import opm.whatsapp.features.command.Command;
 import opm.whatsapp.api.manager.FriendManager;
 import opm.whatsapp.features.modules.HUD.HUD;
-import opm.whatsapp.features.modules.misc.AutoGG;
 
 public class FriendCommand
         extends Command {
@@ -48,7 +47,7 @@ public class FriendCommand
                     WhatsApp.friendManager.addFriend(commands[1]);
                     FriendCommand.sendMessage(ChatFormatting.GREEN + commands[1] + " has been friended");
                     if (HUD.getInstance().friendMsg.getValue().booleanValue()) {
-                        FriendCommand.mc.player.connection.sendPacket(new CPacketChatMessage("/w " + commands[1] + " I just have you added thanks to WhatsApp.xyz!"));
+                        FriendCommand.mc.player.connection.sendPacket(new CPacketChatMessage("/w " + commands[1] + " I just have you added thanks to WhatsApp.cz!"));
                     }
                     return;
                 }

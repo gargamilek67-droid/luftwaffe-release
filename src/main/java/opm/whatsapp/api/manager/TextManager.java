@@ -5,6 +5,8 @@ import opm.whatsapp.features.Feature;
 import opm.whatsapp.features.gui.font.CustomFont;
 import opm.whatsapp.features.modules.client.FontMod;
 import opm.whatsapp.api.util.Timer;
+import opm.whatsapp.api.util.Util;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
@@ -19,10 +21,14 @@ public class TextManager
     private boolean idling;
 
     public TextManager() {
-        this.updateResolution();
+        // Don't call updateResolution() here to avoid accessing Minecraft during initialization
+        // It will be called later when the TextManager is properly initialized
     }
 
     public void init(boolean startup) {
+        // Initialize resolution now that Minecraft is available
+        this.updateResolution();
+        
         FontMod cFont = WhatsApp.moduleManager.getModuleByClass(FontMod.class);
         try {
             this.setFontRenderer(new Font(cFont.fontName.getValue(), cFont.fontStyle.getValue(), cFont.fontSize.getValue()), cFont.antiAlias.getValue(), cFont.fractionalMetrics.getValue());
@@ -44,7 +50,7 @@ public class TextManager
             }
             return;
         }
-        TextManager.mc.fontRenderer.drawString(text, x, y, color, shadow);
+        Minecraft.getMinecraft().fontRenderer.drawString(text, x, y, color, shadow);
     }
 
     public float centerText(String govno) {
@@ -56,7 +62,7 @@ public class TextManager
         if (WhatsApp.moduleManager.isModuleEnabled(FontMod.getInstance().getName())) {
             return this.customFont.getStringWidth(text);
         }
-        return TextManager.mc.fontRenderer.getStringWidth(text);
+        return Minecraft.getMinecraft().fontRenderer.getStringWidth(text);
     }
 
     public int getFontHeight() {
@@ -64,7 +70,7 @@ public class TextManager
             String text = "A";
             return this.customFont.getStringHeight(text);
         }
-        return TextManager.mc.fontRenderer.FONT_HEIGHT;
+        return Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
     }
 
     public void setFontRenderer(Font font, boolean antiAlias, boolean fractionalMetrics) {
@@ -76,24 +82,40 @@ public class TextManager
     }
 
     public void updateResolution() {
-        this.scaledWidth = TextManager.mc.displayWidth;
-        this.scaledHeight = TextManager.mc.displayHeight;
-        this.scaleFactor = 1;
-        boolean flag = mc.isUnicode();
-        int i = TextManager.mc.gameSettings.guiScale;
-        if (i == 0) {
-            i = 1000;
+        try {
+            // Use LWJGL Display class to get display dimensions in MC 1.12.2
+            this.scaledWidth = org.lwjgl.opengl.Display.getWidth();
+            this.scaledHeight = org.lwjgl.opengl.Display.getHeight();
+            this.scaleFactor = 1;
+            
+            // Get Minecraft instance directly
+            Minecraft mc = Minecraft.getMinecraft();
+            if (mc == null || mc.gameSettings == null) {
+                // Fallback values if Minecraft isn't ready
+                return;
+            }
+            
+            boolean flag = mc.isUnicode();
+            int i = mc.gameSettings.guiScale;
+            if (i == 0) {
+                i = 1000;
+            }
+            while (this.scaleFactor < i && this.scaledWidth / (this.scaleFactor + 1) >= 320 && this.scaledHeight / (this.scaleFactor + 1) >= 240) {
+                ++this.scaleFactor;
+            }
+            if (flag && this.scaleFactor % 2 != 0 && this.scaleFactor != 1) {
+                --this.scaleFactor;
+            }
+            double scaledWidthD = this.scaledWidth / this.scaleFactor;
+            double scaledHeightD = this.scaledHeight / this.scaleFactor;
+            this.scaledWidth = MathHelper.ceil(scaledWidthD);
+            this.scaledHeight = MathHelper.ceil(scaledHeightD);
+        } catch (Exception e) {
+            // Fallback to basic values if there's any issue
+            this.scaledWidth = 854;
+            this.scaledHeight = 480;
+            this.scaleFactor = 1;
         }
-        while (this.scaleFactor < i && this.scaledWidth / (this.scaleFactor + 1) >= 320 && this.scaledHeight / (this.scaleFactor + 1) >= 240) {
-            ++this.scaleFactor;
-        }
-        if (flag && this.scaleFactor % 2 != 0 && this.scaleFactor != 1) {
-            --this.scaleFactor;
-        }
-        double scaledWidthD = this.scaledWidth / this.scaleFactor;
-        double scaledHeightD = this.scaledHeight / this.scaleFactor;
-        this.scaledWidth = MathHelper.ceil(scaledWidthD);
-        this.scaledHeight = MathHelper.ceil(scaledHeightD);
     }
 
     public String getIdleSign() {

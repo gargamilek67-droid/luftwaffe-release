@@ -103,7 +103,7 @@ public class HoleUtils
                 isHole = false;
                 continue;
             }
-            if (b != Blocks.OBSIDIAN && b != Blocks.ENDER_CHEST && b != Blocks.ANVIL) continue;
+            if (b != Blocks.OBSIDIAN && b != Blocks.ANVIL) continue;
             ++bedrock;
         }
         if (HoleUtils.mc.world.getBlockState(pos.add(0, 2, 0)).getBlock() != Blocks.AIR || HoleUtils.mc.world.getBlockState(pos.add(0, 1, 0)).getBlock() != Blocks.AIR) {
@@ -159,7 +159,7 @@ public class HoleUtils
     }
 
     static boolean isSafeBlock(BlockPos pos) {
-        return HoleUtils.mc.world.getBlockState(pos).getBlock() == Blocks.OBSIDIAN || HoleUtils.mc.world.getBlockState(pos).getBlock() == Blocks.BEDROCK || HoleUtils.mc.world.getBlockState(pos).getBlock() == Blocks.ENDER_CHEST;
+        return HoleUtils.mc.world.getBlockState(pos).getBlock() == Blocks.OBSIDIAN || HoleUtils.mc.world.getBlockState(pos).getBlock() == Blocks.BEDROCK;
     }
 
     public static List<Hole> getHoles(double range, BlockPos playerPos, boolean doubles) {

@@ -6,7 +6,7 @@ import opm.whatsapp.api.event.events.Render2DEvent;
 import opm.whatsapp.api.event.events.Render3DEvent;
 import opm.whatsapp.features.Feature;
 import opm.whatsapp.features.modules.HUD.*;
-import opm.whatsapp.features.gui.whatsappGui;
+import opm.whatsapp.features.gui.LuftwaffeGui;
 import opm.whatsapp.features.modules.Module;
 import opm.whatsapp.features.modules.client.*;
 import opm.whatsapp.features.modules.combat.*;
@@ -242,7 +242,7 @@ public class ModuleManager
     }
 
     public void onKeyPressed(int eventKey) {
-        if (eventKey == 0 || !Keyboard.getEventKeyState() || ModuleManager.mc.currentScreen instanceof whatsappGui) {
+        if (eventKey == 0 || !Keyboard.getEventKeyState() || ModuleManager.mc.currentScreen instanceof LuftwaffeGui) {
             return;
         }
         this.modules.forEach(module -> {

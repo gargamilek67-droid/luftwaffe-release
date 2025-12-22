@@ -104,7 +104,7 @@ public class Module
         this.onToggle();
         this.onEnable();
         if (Manager.getInstance().notifyToggles.getValue().booleanValue()) {
-            TextComponentString text = new TextComponentString("" + ChatFormatting.DARK_GREEN + ChatFormatting.BOLD + "whatsapp" + ChatFormatting.GRAY + ChatFormatting.BOLD + ".xyz" +  " " + ChatFormatting.RESET + this.getDisplayName() + ChatFormatting.GREEN + " enabled");
+            TextComponentString text = new TextComponentString("" + ChatFormatting.DARK_GREEN + ChatFormatting.BOLD + "whatsapp" + ChatFormatting.GRAY + ChatFormatting.BOLD + ".cz" +  " " + ChatFormatting.RESET + this.getDisplayName() + ChatFormatting.GREEN + " enabled");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
         if (this.isOn() && this.hasListener && !this.alwaysListening) {
@@ -118,7 +118,7 @@ public class Module
         }
         this.enabled.setValue(false);
         if (Manager.getInstance().notifyToggles.getValue().booleanValue()) {
-            TextComponentString text = new TextComponentString("" + ChatFormatting.DARK_GREEN + ChatFormatting.BOLD + "whatsapp" + ChatFormatting.GRAY + ChatFormatting.BOLD + ".xyz" +  " " + ChatFormatting.RESET + this.getDisplayName() + ChatFormatting.RED + " disabled");
+            TextComponentString text = new TextComponentString("" + ChatFormatting.DARK_GREEN + ChatFormatting.BOLD + "whatsapp" + ChatFormatting.GRAY + ChatFormatting.BOLD + ".cz" +  " " + ChatFormatting.RESET + this.getDisplayName() + ChatFormatting.RED + " disabled");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
         this.onToggle();

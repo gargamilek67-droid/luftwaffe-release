@@ -13,7 +13,7 @@ import java.awt.*;
 public class FontMod
         extends Module {
     private static FontMod INSTANCE = new FontMod();
-    public Setting<String> fontName = this.register(new Setting<String>("FontName", "Papyrus", "Name of the font."));
+    public Setting<String> fontName = this.register(new Setting<String>("FontName", "Arial", "Name of the font."));
     public Setting<Boolean> antiAlias = this.register(new Setting<Boolean>("AntiAlias", Boolean.valueOf(true), "Smoother font."));
     public Setting<Boolean> fractionalMetrics = this.register(new Setting<Boolean>("Metrics", Boolean.valueOf(true), "Thinner font."));
     public Setting<Integer> fontSize = this.register(new Setting<Integer>("Size", Integer.valueOf(18), Integer.valueOf(12), Integer.valueOf(30), "Size of the font."));

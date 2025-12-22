@@ -1,12 +1,12 @@
 [
   {
-    "modid": "whatsapp",
-    "name": "WhatsApp",https://github.com/gargamilek67-droid/whatsappsense.git
-    "description": "hi :D",
-    "version": "0.0.7",
+    "modid": "whatsapp.cz",
+    "name": "whatsapp.cz",
+    "description": "WhatsApp Minecraft Client",
+    "version": "0.0.4",
     "mcversion": "1.12.2",
     "logoFile": "swag.png",
-    "url": "https://soundcloud.com/angel-jr-172544400/realme-note-60-beatbox?si=9b027d2132484b248b299b1f24e132b5&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
+    "url": "",
     "updateUrl": "",
     "authorList": [
       "coinbasebandit67, foodora"

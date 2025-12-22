@@ -50,7 +50,7 @@ public class HoleManager
                 if (BlockUtil.isBlockUnSolid(block)) {
                     midSafe = false;
                 }
-                if (block == Blocks.BEDROCK || block == Blocks.OBSIDIAN || block == Blocks.ENDER_CHEST || block == Blocks.ANVIL)
+                if (block == Blocks.BEDROCK || block == Blocks.OBSIDIAN || block == Blocks.ANVIL)
                     continue;
                 isSafe = false;
             }

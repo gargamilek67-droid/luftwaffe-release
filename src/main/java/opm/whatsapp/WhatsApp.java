@@ -185,10 +185,18 @@ public class WhatsApp {
 
     public static void onUnload() {
         if (!unloaded) {
-            eventManager.onUnload();
-            moduleManager.onUnload();
-            configManager.saveConfig(WhatsApp.configManager.config.replaceFirst("whatsapp/", ""));
-            moduleManager.onUnloadPost();
+            if (eventManager != null) {
+                eventManager.onUnload();
+            }
+            if (moduleManager != null) {
+                moduleManager.onUnload();
+            }
+            if (configManager != null && configManager.config != null) {
+                configManager.saveConfig(WhatsApp.configManager.config.replaceFirst("whatsapp/", ""));
+            }
+            if (moduleManager != null) {
+                moduleManager.onUnloadPost();
+            }
             unloaded = true;
         }
     }
@@ -201,10 +209,6 @@ public class WhatsApp {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        String title = MODID + " | " + MODVER + " | " +
-                net.minecraft.client.Minecraft.getMinecraft().getVersion() + " | " +
-                net.minecraft.client.Minecraft.getMinecraft().getSession().getUsername();
-        org.lwjgl.opengl.Display.setTitle(title);
         LOGGER.info("Initializing whatsapp...");
         Display.setTitle("whatsapp.cz");
         LOGGER.info("Starting full initialization...");

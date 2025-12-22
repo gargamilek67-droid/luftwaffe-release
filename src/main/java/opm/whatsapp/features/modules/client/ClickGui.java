@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class ClickGui
         extends Module {
     private static ClickGui INSTANCE = new ClickGui();
-    public Setting<String> command = register(new Setting("Command", "WhatsApp.xyz"));
+    public Setting<String> command = register(new Setting("Command", "WhatsApp.cz"));
     public Setting<String> prefix = this.register(new Setting<String>("Prefix", "."));
     public Setting<Boolean> customFov = this.register(new Setting<Boolean>("CustomFov", false));
     public Setting<Float> fov = this.register(new Setting<Float>("Fov", Float.valueOf(150.0f), Float.valueOf(-180.0f), Float.valueOf(180.0f)));
