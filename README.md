@@ -1,7 +1,7 @@
-# heres the normal version of luftwaffe
+# hello from dubai :)
 
-still no luftwaffe gold edition leak :(
+still no skeet.cc edition leak :(
 
-credits: me, doick, KowkZombie and Cxiy!
+credits: everyone
 
-![Timeline_14](https://github.com/user-attachments/assets/157b87e6-832d-4cbb-8937-ce834e4eca84)
+whatsapp sense++
